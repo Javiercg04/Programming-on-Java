@@ -1,9 +1,9 @@
 # Programming-on-Java
 
-###Task 1:
+### Task 1:
 First of all I have to inform that I have been using windows so I haven't figured out how to use the terminal.
 So we are going to start with the principal task:
-
+```
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -55,3 +55,4 @@ public class Task1{
     }
     
 }
+```
