@@ -54,5 +54,25 @@ public class Task1{
     
 }
 ```
+That's the code so in the first line we use the Scanner librery to read all the things that we write on the terminal. Also, we have to know about the other libraries that we use:
 
+```
 
+import java.io.BufferedWriter;
+
+```
+BufferedWriter is a class used to write text to an output stream (such as a file) efficiently. It uses an internal buffer to reduce the number of accesses to the writing system.
+
+```
+
+import java.io.FileWriter;
+
+```
+FileWriter is a class that allows you to write characters to a file. It is a simple way to write text to files in Java.
+
+```
+
+import java.io.IOException;
+
+```
+IOException is a checked exception that occurs when there are input/output (I/O) problems in a program. It is used to handle errors when working with files, data streams, sockets, etc.
