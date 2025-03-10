@@ -243,4 +243,107 @@ Finally e have the getters, only to use it to show the values. In addition, it i
 
 ```
 
-## Specific Methods.
+### Specific Methods.
+```
+
+public static boolean validFacultyNumber(String faculty_number){
+        if(faculty_number == null || faculty_number.length() < 5 || faculty_number.length() > 10 ){
+            System.out.println("ERROR EN LA LONGITUD");
+            return false;
+        }else if ( faculty_number.length() >= 5 && faculty_number.length() <= 6){
+            for( int i = 0; i < faculty_number.length(); i++){
+                char c = faculty_number.charAt(i);
+                boolean check = (c >= '0' && c <= '9');
+                if( check == false ){
+                    System.out.println("ERROR POR PONER LETRA EN LONGITUD DE 5-6");
+                    return false;
+                }
+            }
+        }
+        
+//        int checksum = faculty_number.charAt(0) - '0';
+//        int c_checksum = 0;
+//        
+//        for( int i = 1; i < faculty_number.length(); i++){
+//            char c = faculty_number.charAt(i);
+//            int value = (c >= '0' && c <= '9') ? (c - '0') : ((c & 31));
+//            c_checksum += value;
+//            System.out.print(c_checksum + "\n");
+//        }   
+//        
+//        return (c_checksum % 11) == checksum;
+          return true;
+    }
+
+```
+If the number of faculty is null, less than 5 characters or greater than 10 characters, an error is displayed and the function returns false. If the length is between 5 and 6 characters, it checks that all characters are numbers. If it finds a letter, it displays an error and returns false.
+
+### Main
+```
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Scanner;
+import task3.Student;
+
+public class SortStudentsInUniversity {
+
+    public static void main(String[] args) {
+        // TODO code application logic here
+        ArrayList<Student> students = new ArrayList<>();
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("How many students do you want to sort: ");
+        int number_students = scanner.nextInt();
+        scanner.nextLine();
+        
+        for(int i = 0; i < number_students; i++){
+            System.out.print("Enter your name: ");
+            String name = scanner.nextLine();
+            
+            System.out.print("Enter your surname: ");
+            String surname = scanner.nextLine();
+            
+            System.out.print("Enrer Faculty number: ");
+            String faculty_number = scanner.nextLine();
+            
+            System.out.print("Average grade: ");
+            double a_g = scanner.nextDouble();
+            scanner.nextLine();
+            
+            students.add(new Student(faculty_number,name,a_g,surname));
+        }
+        
+        scanner.close();
+        
+       //students.sort(Comparator.comparingDouble(Student::getAverage_grade).reversed().thenComparing(Student::getName));
+       
+       for(int i = 0; i < students.size() - 1; i++){
+           for(int j = i + 1; j < students.size() ; j++){
+               if( students.get(i).getAverage_grade() < students.get(j).getAverage_grade() ||
+                   students.get(i).getAverage_grade() == students.get(j).getAverage_grade() && 
+                   students.get(i).getName().compareTo(students.get(j).getName()) > 0 ||
+                   students.get(i).getSurname().compareTo(students.get(j).getSurname()) > 0){
+                    Student temp = students.get(i);
+                    students.set(i, students.get(j));
+                    students.set(j, temp);    
+               }
+           }
+       }
+        
+       System.out.println("Name Surname FacultyNumber AverageGrade");
+       
+       for(Student student : students){
+           System.out.println(student.toString());
+       }
+    }
+    
+}
+
+
+```
+We use arraylist to be able to store the number of users that people request. We then use Scanner to together with the for to be able to store all the students that are requested using the constructor of the class. And the to string to show the students already sorted.
+Then we sort mainly by grades, then first name, then surname.
+
+For execute we only have to touch the run button.
