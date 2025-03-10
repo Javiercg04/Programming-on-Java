@@ -89,4 +89,158 @@ In this case, we can break down each part of the code bit by bit in this case we
 3. Main
 
 ### Student Class:
+```
+public class Student {
+    //Atributes
+    private String faculty_number;
+    private String name;
+    private String surname;
+    private double average_grade;
+    
+    //Constructor without parameters
+    public Student(){
+        this.faculty_number="UnKnown";
+        this.average_grade=0.0;
+        this.name= "UnKnown";
+        this.surname= "UnKnown";
+    }
+    
+    //Constructor 
+    public Student(String faculty,String n,double a_g,String sn){
+        if( !validFacultyNumber(faculty) || a_g < 0 || a_g > 6 ){
+            throw new IllegalArgumentException("Invalid faculty number");
+        }
+        this.faculty_number=faculty;
+        this.name=n;
+        this.average_grade=a_g;
+        this.surname= sn;
+    }
+    
+    //Setters
+    public void setFaculty_Number(String faculty){
+        if( !validFacultyNumber(faculty)){
+            throw new IllegalArgumentException("Invalid faculty number");
+        }
+        this.faculty_number=faculty;
+    }
+    
+    public void setName(String n){
+        this.name=n;
+    }
+    
+    public void setSurname(String sn){
+        this.surname=sn;
+    }
+    
+    public void setAverage_grade(double a_g){
+        if ( a_g < 0 || a_g > 6){
+            throw new IllegalArgumentException("Invalid faculty number");
+        }
+        this.average_grade=a_g;
+    }
+    
+    //Getters
+    public String getFaculty_Number(){
+        return this.faculty_number;
+    }
+    
+    public String getName(){
+        return this.name;
+    }
+    
+    public double getAverage_grade(){
+        return this.average_grade;
+    }
+    
+    public String getSurname(){
+        return this.surname;
+    }
+    
+    //Methods:
+    public String toString(){
+        return this.name + " " + this.surname + " " + this.faculty_number + " " + this.average_grade;
+    }
 
+
+```
+First we will focus on the private attributes, which are private class attributes, that is: Private attributes are variables declared with the access modifier private within a class. They can only be accessed and modified from within the same class, not from other classes. This follows the principle of encapsulation, one of the foundations of object-oriented programming (OOP), which helps to protect data and avoid undue modification.
+
+Constructor initialises to an unknown value if it has not been initialised with parameters, and we apply the overload, since there is another constructor with parameter passing. Looking at different ways of doing this
+```
+//Constructor 
+    public Student(String faculty,String n,double a_g,String sn){
+        if( !validFacultyNumber(faculty) || a_g < 0 || a_g > 6 ){
+            throw new IllegalArgumentException("Invalid faculty number");
+        }
+        this.faculty_number=faculty;
+        this.name=n;
+        this.average_grade=a_g;
+        this.surname= sn;
+    }
+    
+    //Setters
+    public void setFaculty_Number(String faculty){
+        if( !validFacultyNumber(faculty)){
+            throw new IllegalArgumentException("Invalid faculty number");
+        }
+        this.faculty_number=faculty;
+    }
+
+```
+Otherwise, the set methods only allow us to modified the value of the private class atributes:
+```
+
+ //Setters
+    public void setFaculty_Number(String faculty){
+        if( !validFacultyNumber(faculty)){
+            throw new IllegalArgumentException("Invalid faculty number");
+        }
+        this.faculty_number=faculty;
+    }
+    
+    public void setName(String n){
+        this.name=n;
+    }
+    
+    public void setSurname(String sn){
+        this.surname=sn;
+    }
+    
+    public void setAverage_grade(double a_g){
+        if ( a_g < 0 || a_g > 6){
+            throw new IllegalArgumentException("Invalid faculty number");
+        }
+        this.average_grade=a_g;
+    }
+
+```
+Because is a bulgarian grade the grade only goes from 0 to 6, so it's important to take care.
+
+Finally e have the getters, only to use it to show the values. In addition, it is important that I have made a to string to make it easier in main or elsewhere to express the class and its attributes.
+```
+
+ //Getters
+    public String getFaculty_Number(){
+        return this.faculty_number;
+    }
+    
+    public String getName(){
+        return this.name;
+    }
+    
+    public double getAverage_grade(){
+        return this.average_grade;
+    }
+    
+    public String getSurname(){
+        return this.surname;
+    }
+    
+    //Methods:
+    public String toString(){
+        return this.name + " " + this.surname + " " + this.faculty_number + " " + this.average_grade;
+    }
+
+```
+
+## Specific Methods.
