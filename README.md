@@ -1,6 +1,11 @@
 # Programming-on-Java
 
-### Task 1:
+## Index
+1. Task 1
+2. Task 3
+
+
+## Task 1:
 First of all I have to inform that I have been using windows so I haven't figured out how to use the terminal.
 So we are going to start with the principal task:
 ```
@@ -8,15 +13,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-/**
- *
- * @author javie
- */
-public class Task1{
 
-    /**
-     * @param args the command line arguments
-     */
+public class Task1{
     public static void main(String[] args) {
         /**
          We have to start to write on a empty "file" so
@@ -56,3 +54,5 @@ public class Task1{
     
 }
 ```
+
+
