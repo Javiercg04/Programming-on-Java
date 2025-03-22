@@ -496,10 +496,10 @@ public static void main(String[] args) {
 ```
 
 public static void splitBinaryFile(String filePath, int chunkSize) throws IOException {
-        File inputFile = new File(filePath);
+        File inputFile = new File(filePath); // Creates an object of class File, which represents the original file we are going to split.
         try (FileInputStream fis = new FileInputStream(inputFile)) {
-            byte[] buffer = new byte[chunkSize];
-            int partNumber = 1;
+            byte[] buffer = new byte[chunkSize]; // Creates a byte array called a buffer with a size equal to the value of chunkSize. This buffer temporarily stores the data read from the file.
+            int partNumber = 1; // Initialises a partNumber counter, which will be used to number the resulting fragment files.
             int bytesRead;
 
             while ((bytesRead = fis.read(buffer)) > 0) {
@@ -509,6 +509,10 @@ public static void splitBinaryFile(String filePath, int chunkSize) throws IOExce
                     System.out.println("Created part file: " + partFileName);
                 }
             }
+/*
+Reads up to chunkSize bytes from the original file and stores them in the array buffer.
+Returns the number of bytes read, which may be less than the buffer size if the file is near the end.
+*/
         }
     }
 
@@ -530,7 +534,7 @@ After this we need the main:
 
 ```
 ### Differencies between SplitFile and SplitBinaryFile:
-- SplitFile (Texto):
+- SplitFile (Text):
 
     - This program processes text files.
 
@@ -538,13 +542,14 @@ After this we need the main:
 
     - It handles text encoded in readable formats such as ASCII or UTF-8, so it works in terms of characters.
 
-- SplitBinaryFile (Binario):
+- SplitBinaryFile (Binary)
     - Processes binary files, such as images, videos, executable files, or compressed files.
 
     - It uses classes such as BufferedInputStream and BufferedOutputStream, which work with binary data (bytes).
 
     - Instead of characters, it reads and writes data byte by byte, which is essential to preserve the integrity of binary files that could be corrupted if treated as text.
 
+### FileMerge:
 
 
 
