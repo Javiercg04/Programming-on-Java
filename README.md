@@ -532,19 +532,18 @@ After this we need the main:
 ### Differencies between SplitFile and SplitBinaryFile:
 - SplitFile (Texto):
 
-Este programa procesa archivos de texto.
+    - This program processes text files.
 
-Utiliza clases como BufferedReader y BufferedWriter que trabajan con datos de texto (caracteres).
+    - It uses classes like BufferedReader and BufferedWriter that work with text data (characters).
 
-Maneja texto codificado en formatos legibles como ASCII o UTF-8, por lo que trabaja en términos de caracteres.
+    - It handles text encoded in readable formats such as ASCII or UTF-8, so it works in terms of characters.
 
 - SplitBinaryFile (Binario):
+    - Processes binary files, such as images, videos, executable files, or compressed files.
 
-Procesa archivos binarios, como imágenes, videos, archivos ejecutables, o archivos comprimidos.
+    - It uses classes such as BufferedInputStream and BufferedOutputStream, which work with binary data (bytes).
 
-Utiliza clases como BufferedInputStream y BufferedOutputStream, que trabajan con datos binarios (bytes).
-
-En lugar de caracteres, lee y escribe datos byte por byte, lo cual es esencial para preservar la integridad de archivos binarios que podrían corromperse si se tratan como texto.
+    - Instead of characters, it reads and writes data byte by byte, which is essential to preserve the integrity of binary files that could be corrupted if treated as text.
 
 
 
