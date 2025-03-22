@@ -3,8 +3,8 @@
 ## Index
 1. Task 1
 2. Task 3
-3. HW-Zip
-4. HW-Files
+3. HW-Zip(FunctionClass)
+4. HW-Files(SlpitFile, SplitBinaryFile, FileMerge)
 
 
 ## Task 1:
