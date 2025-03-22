@@ -3,6 +3,7 @@
 ## Index
 1. Task 1
 2. Task 3
+3. HW-Zip
 
 
 ## Task 1:
@@ -347,3 +348,58 @@ We use arraylist to be able to store the number of users that people request. We
 Then we sort mainly by grades, then first name, then surname.
 
 For execute we only have to touch the run button.
+
+
+## HW-Zip
+First of all, we understand what we have to do in this project. First we have to talk about what we have to do. 
+First of all we have to focus on unzip, which is the method that allows us to decompress the file where the zip file is located.
+```
+
+public static void unzipArchive(String zipFilePath, String outputDir) throws IOException{
+        byte[] buffer = new byte[1024]; // With this buffer we can read the content of the files.
+        ZipInputStream zipInput = new ZipInputStream(new FileInputStream(zipFilePath)); // This class implements an input stream filter for reading files in the ZIP file format. 
+        ZipEntry entry; // This class is used to represent a ZIP file entry.
+
+        while ((entry = zipInput.getNextEntry()) != null) { // WHile there are files on the directory
+            String fileName = new File(entry.getName()).getName(); // To know the names.
+            File newFile = new File(outputDir, fileName);
+            new File(newFile.getParent()).mkdirs(); // Create the necesary directories.
+            try (FileOutputStream fos = new FileOutputStream(newFile)) {
+                int len;
+                while ((len = zipInput.read(buffer)) > 0) {
+                    fos.write(buffer, 0, len);
+                }
+            } // This lines is to read what is on the files.
+            zipInput.closeEntry();
+        }
+        zipInput.close();
+    } 
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
