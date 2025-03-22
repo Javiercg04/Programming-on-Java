@@ -493,7 +493,58 @@ public static void main(String[] args) {
     
 ```
 ### SplitBinaryFile:
+```
 
+public static void splitBinaryFile(String filePath, int chunkSize) throws IOException {
+        File inputFile = new File(filePath);
+        try (FileInputStream fis = new FileInputStream(inputFile)) {
+            byte[] buffer = new byte[chunkSize];
+            int partNumber = 1;
+            int bytesRead;
+
+            while ((bytesRead = fis.read(buffer)) > 0) {
+                String partFileName = filePath + "_PART" + String.format("%03d", partNumber++);
+                try (FileOutputStream fos = new FileOutputStream(partFileName)) {
+                    fos.write(buffer, 0, bytesRead);
+                    System.out.println("Created part file: " + partFileName);
+                }
+            }
+        }
+    }
+
+```
+After this we need the main:
+```
+
+ public static void main(String[] args) {
+         // Definir la ruta del archivo y el tamaño del chunk directamente en el código
+        String filePath = "C:\\Users\\javie\\OneDrive - UNIVERSIDAD DE GRANADA\\Documentos\\3 Carrera\\1 Semestre\\Programming on  Java\\Utilities\\a.png";  // Ruta del archivo
+        int chunkSize = 1024;  // Tamaño de cada chunk en bytes (1 KB)
+
+        try {
+            splitBinaryFile(filePath, chunkSize);  // Llamada al método para dividir el archivo
+        } catch (IOException e) {
+            System.err.println("Error splitting file: " + e.getMessage());
+        }
+    }
+
+```
+### Differencies between SplitFile and SplitBinaryFile:
+- SplitFile (Texto):
+
+Este programa procesa archivos de texto.
+
+Utiliza clases como BufferedReader y BufferedWriter que trabajan con datos de texto (caracteres).
+
+Maneja texto codificado en formatos legibles como ASCII o UTF-8, por lo que trabaja en términos de caracteres.
+
+- SplitBinaryFile (Binario):
+
+Procesa archivos binarios, como imágenes, videos, archivos ejecutables, o archivos comprimidos.
+
+Utiliza clases como BufferedInputStream y BufferedOutputStream, que trabajan con datos binarios (bytes).
+
+En lugar de caracteres, lee y escribe datos byte por byte, lo cual es esencial para preservar la integridad de archivos binarios que podrían corromperse si se tratan como texto.
 
 
 
