@@ -4,6 +4,7 @@
 1. Task 1
 2. Task 3
 3. HW-Zip
+4. HW-Files
 
 
 ## Task 1:
@@ -452,6 +453,47 @@ import java.io.*; // For exceptions.
 import java.util.zip.*; // For use the classes.
 
 ```
+
+## HW-Files
+### SplitFile:
+```
+
+public static void splitTextFile(String filePath, int chunkSize) throws IOException {
+        File inputFile = new File(filePath); // Creates a File object representing the file located at the path filePath
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) { // Used to ensure that the resource (BufferedReader in this case) is automatically closed after use.
+            int partNumber = 1; // Initialises a partNumber counter that keeps track of the parts into which the file is to be split (part 1, part 2, part 3, etc.).
+            int bytesRead = 0; // Create a bytesRead variable that will store the number of bytes read in each iteration of the loop.
+            char[] buffer = new char[chunkSize]; // Creates a buffered character array with size equal to chunkSize. This buffer shall temporarily store each chunk of data read from the file.
+
+            while ((bytesRead = reader.read(buffer)) > 0) { // The loop continues to run as long as bytesRead > 0.
+                String partFileName = filePath.replace(".txt", "_PART" + String.format("%03d", partNumber++) + ".txt"); // Generates the file name of the current part.
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(partFileName))) { 
+                    writer.write(buffer, 0, bytesRead); // Writes to the file the buffered characters, from index 0 to the number of characters read in that iteration (bytesRead).
+                    System.out.println("Created part file: " + partFileName);
+                }
+            }
+        }
+    }
+
+```
+After this we need the main:
+```
+
+public static void main(String[] args) {
+        // Definir la ruta del archivo y el tamaño del chunk directamente en el código
+        String filePath = "C:\\Users\\javie\\OneDrive - UNIVERSIDAD DE GRANADA\\Documentos\\3 Carrera\\1 Semestre\\Programming on  Java\\demo.txt";  // Ruta del archivo
+        int chunkSize = 1024;  // 1 KB
+
+        try {
+            splitTextFile(filePath, chunkSize);
+        } catch (IOException e) {
+            System.err.println("Error splitting file: " + e.getMessage());
+        }
+    }
+    
+```
+### SplitBinaryFile:
+
 
 
 
