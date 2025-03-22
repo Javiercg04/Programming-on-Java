@@ -376,8 +376,82 @@ public static void unzipArchive(String zipFilePath, String outputDir) throws IOE
     } 
 
 ```
+After that, as it says in the statement itself, we have to merge the different files into one.
+```
 
+ public static void mergeFiles(String output,String mergedFileName) throws IOException {
+        String[] fileNames = {"file1.txt", "file2.txt", "file3.txt"};  // Files to combine
+        BufferedWriter writer = new BufferedWriter(new FileWriter(output + File.separator + mergedFileName));
 
+        for (String fileName : fileNames) {
+            BufferedReader reader = new BufferedReader(new FileReader(output + File.separator + fileName));
+            String line;
+            while ((line = reader.readLine()) != null) {  // Read line by line
+                writer.write(line);  // Write each line in the combined file
+                writer.newLine();  // Add line break
+            }
+            reader.close();
+        }
+        writer.close();
+    }
+
+```
+Finally, as requested, we need to re-compress the file.
+```
+
+public static void zipFiles(String outputFolder, String mergedFileName, String zipFilePath) throws IOException {
+        FileOutputStream fos = new FileOutputStream(zipFilePath);
+        ZipOutputStream zos = new ZipOutputStream(fos);
+
+        String[] filesToZip = {"file1.txt", "file2.txt", "file3.txt", mergedFileName};
+        for (String fileName : filesToZip) {
+            File file = new File(outputFolder + File.separator + fileName);
+            FileInputStream fis = new FileInputStream(file);
+
+            ZipEntry zipEntry = new ZipEntry(file.getName());  // Crear entrada en ZIP
+            zos.putNextEntry(zipEntry);
+
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = fis.read(buffer)) > 0) {  // Leer datos y escribir en el ZIP
+                zos.write(buffer, 0, len);
+            }
+            fis.close();
+        }
+
+        zos.closeEntry();
+        zos.close();
+    }
+
+```
+
+With this last one we have already made the complete programme together with the main one that I am going to show now, which is very basic, but finally we have to take into account that we use the absolute route.
+```
+
+public static  void main(String[] args){
+        String zipFilePath = "C:\\Users\\javie\\OneDrive - UNIVERSIDAD DE GRANADA\\Documentos\\3 Carrera\\1 Semestre\\Programming on  Java\\Task-FC.zip";// Archivo ZIP
+        String outputFolder = "C:\\Users\\javie\\OneDrive - UNIVERSIDAD DE GRANADA\\Documentos\\3 Carrera\\1 Semestre\\Programming on  Java";// Carpeta de salida
+        String mergedFileName = "merged_file.txt";// Archivo combinado
+
+        try {
+            unzipArchive(zipFilePath, outputFolder);
+            mergeFiles(outputFolder, mergedFileName);
+            zipFiles(outputFolder, mergedFileName, "Task-FC2.zip");
+
+            System.out.println("Proceso completado exitosamente.");
+        } catch (IOException e) {
+            System.out.println("Se produjo un error: " + e.getMessage());
+        }    
+    }
+
+```
+Finally we use two libraries:
+```
+
+import java.io.*; // For exceptions.
+import java.util.zip.*; // For use the classes.
+
+```
 
 
 
