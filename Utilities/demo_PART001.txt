@@ -1,0 +1,22 @@
+Main tasks (HW-zips):  
+Lab/Homework  
+Streams, files, folders and archives 
+(ENGLISH Version) 
+1. Create class FunctionClass, with functionality: 
+ Unzip the archive, containing three text files (file1.txt, file2.txt, file3.txt); 
+ Merge content of all three text files in new file 
+ Archive 4 files: the new one and 3 original files. 
+Main tasks (HW-files):  
+2. Create class SplitFile.java, with functionality: 
+ If you pass as argument text file and number (size in bytes) – it gets file 
+content and splits it into chunks with size – equals to size in bytes 
+argument, for example: 
+ SplitJava demo.txt 1024 -> splits file demo.txt for example if 
+demo.txt is 2049 bytes- then results is: 
+ demo_PART001.txt (from  0 to 1023 byte), 
+demo_PART002.txt (1024 to 2048 byte) and 
+demo_PART003.txt – contains last 2048 bytes. 
+ Make the same, but for binary file (SplitBinaryFile.java). Is there 
+any difference? 
+3. Create class FileMerge.java – which merges files, from task 2.. 
+Main tasks (HW-

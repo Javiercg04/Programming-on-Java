@@ -1,0 +1,7 @@
+folders traversal):  
+4. Make java program, that traverse given directory – passed as argument and save 
+results in same directory with file name checksum-java.md5 with path to files 
+(relative or absolute), for example if we have folder  
+ C:\temp\ 
+Results is in format list of lines with md5checksum *FilePath\FileName.ext 
+Example content of  checksum-java.md5:
