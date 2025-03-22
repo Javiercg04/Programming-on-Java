@@ -5,6 +5,7 @@
 2. Task 3
 3. HW-Zip(FunctionClass)
 4. HW-Files(SlpitFile, SplitBinaryFile, FileMerge)
+5. HW-folders traversal(Md5CheckSum)
 
 
 ## Task 1:
@@ -550,6 +551,63 @@ After this we need the main:
     - Instead of characters, it reads and writes data byte by byte, which is essential to preserve the integrity of binary files that could be corrupted if treated as text.
 
 ### FileMerge:
+```
+
+public static void mergeFiles(String mergedFilePath, String[] partFiles) throws IOException {
+        try (FileOutputStream fos = new FileOutputStream(mergedFilePath)) {
+            for (String partFile : partFiles) { // This loop loops through each fragment file in the partFiles array. Each partFile is the path to a fragment that will be read and combined into the final file.
+                File file = new File(partFile); // A File object representing the current fragmented file is created. This makes it easier to open and read the file.
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    byte[] buffer = new byte[1024]; // A byte buffer of size 1024 (1 KB) is declared. This buffer will be used to read the data in 1 KB chunks for each iteration of the loop.
+                    int bytesRead;
+                    while ((bytesRead = fis.read(buffer)) > 0) {
+                        fos.write(buffer, 0, bytesRead);
+                    }
+                    System.out.println("Merged part: " + partFile);
+                }
+            }
+        /*
+        This loop reads the data from the fragmented file in blocks of size equal to the buffer (1 KB),
+        fis.read(buffer) attempts to read up to 1024 bytes from the current fragment and stores them in the buffer.
+        The value returned by fis.read() indicates how many bytes were actually read:
+                If it is greater than 0, it continues reading.
+                If it returns -1, it indicates that the end of the file was reached.
+        */
+        }
+        System.out.println("Merge complete! Merged file: " + mergedFilePath);
+    }
+
+
+```
+After this we need the main:
+```
+
+public static void main(String[] args) {
+
+        
+        String mergedFilePath = "C:\\Users\\javie\\OneDrive - UNIVERSIDAD DE GRANADA\\Documentos\\3 Carrera\\1 Semestre\\Programming on  Java\\Utilities\\mergeFiles.png";  // Ruta del archivo final
+        String[] partFiles = {
+                "C:\\Users\\javie\\OneDrive - UNIVERSIDAD DE GRANADA\\Documentos\\3 Carrera\\1 Semestre\\Programming on  Java\\Utilities\\a.png",  // Fragmento 1
+                "C:\\Users\\javie\\OneDrive - UNIVERSIDAD DE GRANADA\\Documentos\\3 Carrera\\1 Semestre\\Programming on  Java\\Utilities\\demo_PART002.txt",  // Fragmento 2
+        };
+         //For SplitBinaryFile
+        /**
+        String mergedFilePath = "C:\\Users\\javie\\OneDrive - UNIVERSIDAD DE GRANADA\\Documentos\\3 Carrera\\1 Semestre\\Programming on  Java\\Utilities\\mergeFiles.txt";  // Ruta del archivo final
+        String[] partFiles = {
+                "C:\\Users\\javie\\OneDrive - UNIVERSIDAD DE GRANADA\\Documentos\\3 Carrera\\1 Semestre\\Programming on  Java\\Utilities\\demo_PART001.txt",  // Fragmento 1
+                "C:\\Users\\javie\\OneDrive - UNIVERSIDAD DE GRANADA\\Documentos\\3 Carrera\\1 Semestre\\Programming on  Java\\Utilities\\demo_PART002.txt",  // Fragmento 2
+        };
+        **/ //For SplitFile
+        try {
+            mergeFiles(mergedFilePath, partFiles);  // Ejecutamos la función de merge
+        } catch (IOException e) {
+            System.err.println("Error merging files: " + e.getMessage());
+        }
+    }
+
+```
+
+## HW-folders traversal(Md5CheckSum):
 
 
 
