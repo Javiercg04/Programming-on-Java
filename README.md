@@ -6,6 +6,7 @@
 3. HW-Zip(FunctionClass)
 4. HW-Files(SlpitFile, SplitBinaryFile, FileMerge)
 5. HW-folders traversal(Md5CheckSum)
+6. IntThread
 
 
 ## Task 1:
@@ -668,9 +669,99 @@ public static void main(String[] args) {
     }
 
 ```
+## IntThread
+First of all we are gonna make the class intThread:
+```
+
+public class IntThread extends Thread{
+     private int number;
+    
+    public IntThread(int number){
+        this.number = number;
+    }
+    
+    @Override
+    public void run(){
+        //15 times the number:
+        for(int i = 0; i < 15; i++){
+            System.out.println("The number thread is: " + number);
+        }
+        
+        try{
+            Thread.sleep(100);
+        }catch(InterruptedException e){
+            System.out.println("Hilo interrumpido.");
+        }
+    }
+}
 
 
+```
+We use extend to extend the class thread, this allow us to make an override above the run method. Also we use slow, because with this the phrase appear slowly.
 
+We are going to see also the first step to do the problem:
+```
+
+public class TestThread {
+    public static void main(String[] args){
+        IntThread thread1 = new IntThread(1);
+        IntThread thread2 = new IntThread(2);
+        IntThread thread3 = new IntThread(3);
+        
+        thread1.start();
+        thread2.start();
+        thread3.start();
+    }
+}
+
+
+```
+With the first part we create:
+```
+
+public class TestThread {
+    public static void main(String[] args){
+        IntThread thread1 = new IntThread(1);
+        IntThread thread2 = new IntThread(2);
+        IntThread thread3 = new IntThread(3);
+        
+        thread1.start();
+        thread2.start();
+        thread3.start();
+    }
+}
+
+```
+
+And the other second test:
+```
+
+public class TestThread2 {
+    public static void main(String[] args){
+        IntThread thread1 = new IntThread(1);
+        IntThread thread2 = new IntThread(2);
+        IntThread thread3 = new IntThread(3);
+        
+        thread1.setPriority(Thread.MIN_PRIORITY);  
+        thread2.setPriority(Thread.MIN_PRIORITY + 1);  
+        thread3.setPriority(Thread.MIN_PRIORITY + 2);  
+        
+        thread1.start();
+        thread2.start();
+        thread3.start();
+    }
+}
+
+```
+We use:
+```
+
+thread1.setPriority(Thread.MIN_PRIORITY);  
+thread2.setPriority(Thread.MIN_PRIORITY + 1);  
+thread3.setPriority(Thread.MIN_PRIORITY + 2);
+
+```
+For assign the priority between the threads.
 
 
 
